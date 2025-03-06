@@ -13,7 +13,7 @@ const EnvironmentSelector: React.FC<EnvironmentSelectorProps> = ({
 }) => {
   return (
     <div className="p-3 bg-white border border-border rounded-xl animate-fade-in">
-      <label className="form-label mb-2">Select Environment</label>
+      <label className="form-label mb-2">Selecione o Ambiente</label>
       <div className="grid grid-cols-2 gap-2">
         <button
           type="button"
@@ -26,7 +26,7 @@ const EnvironmentSelector: React.FC<EnvironmentSelectorProps> = ({
           onClick={() => setEnvironment("sandbox")}
         >
           <div className="w-2 h-2 bg-green-400 rounded-full mr-2" />
-          Sandbox
+          Homologação
         </button>
         
         <button
@@ -40,12 +40,12 @@ const EnvironmentSelector: React.FC<EnvironmentSelectorProps> = ({
           onClick={() => setEnvironment("production")}
         >
           <div className="w-2 h-2 bg-red-500 rounded-full mr-2" />
-          Production
+          Produção
         </button>
       </div>
       {environment === "production" && (
         <div className="mt-3 text-xs text-destructive bg-destructive/5 p-2 rounded-md border border-destructive/20">
-          Warning: You are selecting Production environment. Changes will affect live data.
+          Atenção: Você está selecionando o ambiente de Produção. As alterações afetarão dados reais.
         </div>
       )}
     </div>

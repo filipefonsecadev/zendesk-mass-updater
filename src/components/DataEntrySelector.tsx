@@ -31,7 +31,7 @@ const DataEntrySelector: React.FC<DataEntrySelectorProps> = ({
           style={{
             background:
               mode === "csv"
-                ? "linear-gradient(135deg, #03A393 0%, #03363D 100%)"
+                ? "linear-gradient(135deg, #F58220 0%, #FFA500 100%)"
                 : "",
           }}
         />
@@ -54,14 +54,14 @@ const DataEntrySelector: React.FC<DataEntrySelectorProps> = ({
           <path d="M14 13h2" />
           <path d="M14 17h2" />
         </svg>
-        <span className="text-sm font-medium relative z-10">CSV Import</span>
+        <span className="text-sm font-medium relative z-10">Importar CSV</span>
         <p
           className={cn(
             "text-xs mt-1 max-w-[150px] text-center relative z-10",
             mode === "csv" ? "text-white/90" : "text-muted-foreground"
           )}
         >
-          Upload a CSV file with organization IDs
+          Carregar um arquivo CSV com IDs de organização
         </p>
       </button>
 
@@ -83,7 +83,7 @@ const DataEntrySelector: React.FC<DataEntrySelectorProps> = ({
           style={{
             background:
               mode === "manual"
-                ? "linear-gradient(135deg, #03A393 0%, #03363D 100%)"
+                ? "linear-gradient(135deg, #F58220 0%, #FFA500 100%)"
                 : "",
           }}
         />
@@ -103,14 +103,14 @@ const DataEntrySelector: React.FC<DataEntrySelectorProps> = ({
           <path d="M12 10v6" />
           <path d="M9 13h6" />
         </svg>
-        <span className="text-sm font-medium relative z-10">Single Entry</span>
+        <span className="text-sm font-medium relative z-10">Entrada Única</span>
         <p
           className={cn(
             "text-xs mt-1 max-w-[150px] text-center relative z-10",
             mode === "manual" ? "text-white/90" : "text-muted-foreground"
           )}
         >
-          Enter a single organization ID manually
+          Inserir um único ID de organização manualmente
         </p>
       </button>
     </div>

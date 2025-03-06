@@ -31,7 +31,7 @@ const FieldSelector: React.FC<FieldSelectorProps> = ({
     <div className="flex flex-col sm:flex-row gap-3 p-3 bg-white border border-border rounded-xl animate-fade-in">
       <div className="flex-1">
         <label htmlFor={`field-${index}`} className="form-label">
-          Field to update
+          Campo para atualizar
         </label>
         <select
           id={`field-${index}`}
@@ -40,7 +40,7 @@ const FieldSelector: React.FC<FieldSelectorProps> = ({
           className="w-full input-field bg-white"
         >
           <option value="" disabled>
-            Select a field
+            Selecione um campo
           </option>
           {fieldOptions.map((option) => (
             <option key={option.id} value={option.value}>
@@ -52,7 +52,7 @@ const FieldSelector: React.FC<FieldSelectorProps> = ({
       
       <div className="flex-1">
         <label htmlFor={`value-${index}`} className="form-label">
-          New value
+          Novo valor
         </label>
         <input
           id={`value-${index}`}
@@ -60,7 +60,7 @@ const FieldSelector: React.FC<FieldSelectorProps> = ({
           value={value}
           onChange={(e) => onChange(index, field, e.target.value)}
           className="w-full input-field"
-          placeholder="Enter new value"
+          placeholder="Digite o novo valor"
         />
       </div>
       
@@ -72,7 +72,7 @@ const FieldSelector: React.FC<FieldSelectorProps> = ({
             "flex items-center justify-center self-end mb-0.5 w-8 h-8 rounded-lg text-muted-foreground hover:text-destructive hover:bg-muted transition-colors",
             "sm:self-end sm:mt-6"
           )}
-          aria-label="Remove field"
+          aria-label="Remover campo"
         >
           <svg
             width="16"

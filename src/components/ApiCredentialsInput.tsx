@@ -20,7 +20,7 @@ const ApiCredentialsInput: React.FC<ApiCredentialsInputProps> = ({
       <div className="flex flex-col space-y-3">
         <div>
           <label htmlFor="subdomain" className="form-label">
-            Zendesk Subdomain
+            Subdomínio Zendesk
           </label>
           <input
             id="subdomain"
@@ -28,17 +28,17 @@ const ApiCredentialsInput: React.FC<ApiCredentialsInputProps> = ({
             value={subdomain}
             onChange={(e) => setSubdomain(e.target.value)}
             className="w-full input-field"
-            placeholder="company"
+            placeholder="empresa"
             aria-describedby="subdomain-hint"
           />
           <p id="subdomain-hint" className="text-xs text-muted-foreground mt-1 ml-1">
-            Enter just the subdomain part (e.g., "company" from company.zendesk.com)
+            Digite apenas a parte do subdomínio (ex.: "empresa" de empresa.zendesk.com)
           </p>
         </div>
         
         <div>
           <label htmlFor="api-token" className="form-label">
-            API Token
+            Token da API
           </label>
           <div className="relative">
             <input
@@ -47,14 +47,14 @@ const ApiCredentialsInput: React.FC<ApiCredentialsInputProps> = ({
               value={apiToken}
               onChange={(e) => setApiToken(e.target.value)}
               className="w-full input-field pr-10"
-              placeholder="Enter your Zendesk API token"
+              placeholder="Digite seu token de API Zendesk"
             />
             <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
               {apiToken ? "●●●●●●" : ""}
             </div>
           </div>
           <p className="text-xs text-muted-foreground mt-1 ml-1">
-            Your API token will not be stored permanently
+            Seu token de API não será armazenado permanentemente
           </p>
         </div>
       </div>

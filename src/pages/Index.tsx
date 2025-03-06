@@ -44,8 +44,8 @@ const Index = () => {
     if (file) {
       if (file.size > 10 * 1024 * 1024) {
         toast({
-          title: "Error",
-          description: "File is too large. Maximum size is 10MB.",
+          title: "Erro",
+          description: "Arquivo muito grande. Tamanho máximo é 10MB.",
           variant: "destructive",
         });
         setSelectedFile(null);
@@ -60,13 +60,13 @@ const Index = () => {
           setParsedOrgIds(parsed.map(item => item.organizationId));
           
           toast({
-            title: "CSV Loaded",
-            description: `Found ${parsed.length} organization IDs`,
+            title: "CSV Carregado",
+            description: `Encontrados ${parsed.length} IDs de organização`,
           });
         } catch (error) {
           toast({
-            title: "Error",
-            description: error instanceof Error ? error.message : "Invalid CSV format",
+            title: "Erro",
+            description: error instanceof Error ? error.message : "Formato CSV inválido",
             variant: "destructive",
           });
           setSelectedFile(null);
@@ -97,8 +97,8 @@ const Index = () => {
   const validateForm = (): boolean => {
     if (!subdomain.trim()) {
       toast({
-        title: "Validation Error",
-        description: "Please enter your Zendesk subdomain",
+        title: "Erro de Validação",
+        description: "Por favor, insira seu subdomínio Zendesk",
         variant: "destructive",
       });
       return false;
@@ -106,8 +106,8 @@ const Index = () => {
 
     if (!apiToken.trim()) {
       toast({
-        title: "Validation Error",
-        description: "Please enter your API token",
+        title: "Erro de Validação",
+        description: "Por favor, insira seu token de API",
         variant: "destructive",
       });
       return false;
@@ -115,8 +115,8 @@ const Index = () => {
 
     if (mode === "manual" && !organizationId.trim()) {
       toast({
-        title: "Validation Error",
-        description: "Please enter an organization ID",
+        title: "Erro de Validação",
+        description: "Por favor, insira um ID de organização",
         variant: "destructive",
       });
       return false;
@@ -124,8 +124,8 @@ const Index = () => {
 
     if (mode === "csv" && parsedOrgIds.length === 0) {
       toast({
-        title: "Validation Error",
-        description: "Please upload a valid CSV file with organization IDs",
+        title: "Erro de Validação",
+        description: "Por favor, carregue um arquivo CSV válido com IDs de organização",
         variant: "destructive",
       });
       return false;
@@ -137,8 +137,8 @@ const Index = () => {
     );
     if (!hasValidField) {
       toast({
-        title: "Validation Error",
-        description: "Please specify at least one field to update",
+        title: "Erro de Validação",
+        description: "Por favor, especifique pelo menos um campo para atualizar",
         variant: "destructive",
       });
       return false;
@@ -160,8 +160,8 @@ const Index = () => {
       const credentialsValid = await api.verifyCredentials();
       if (!credentialsValid) {
         toast({
-          title: "Authentication Error",
-          description: "Invalid API credentials or subdomain",
+          title: "Erro de Autenticação",
+          description: "Credenciais de API ou subdomínio inválidos",
           variant: "destructive",
         });
         setIsProcessing(false);
@@ -169,8 +169,8 @@ const Index = () => {
       }
     } catch (error) {
       toast({
-        title: "Connection Error",
-        description: "Could not connect to Zendesk API",
+        title: "Erro de Conexão",
+        description: "Não foi possível conectar à API Zendesk",
         variant: "destructive",
       });
       setIsProcessing(false);
@@ -204,7 +204,7 @@ const Index = () => {
             id: `${orgId}-${Date.now()}`,
             organizationId: orgId,
             success: true,
-            message: "Organization updated successfully",
+            message: "Organização atualizada com sucesso",
             fields: validFieldValues.map(({ field }) => field),
           });
         }
@@ -213,7 +213,7 @@ const Index = () => {
           id: `${orgId}-${Date.now()}`,
           organizationId: orgId,
           success: false,
-          message: error instanceof Error ? error.message : "Unknown error",
+          message: error instanceof Error ? error.message : "Erro desconhecido",
         });
       }
     }
@@ -225,8 +225,8 @@ const Index = () => {
     const failCount = newResults.filter(r => !r.success).length;
     
     toast({
-      title: "Update Complete",
-      description: `Updated ${successCount} organization(s). Failed: ${failCount}`,
+      title: "Atualização Concluída",
+      description: `Atualizadas ${successCount} organização(ões). Falhas: ${failCount}`,
       variant: successCount > 0 ? "default" : "destructive",
     });
   };
@@ -262,9 +262,9 @@ const Index = () => {
 
   const exportToCsv = () => {
     // Create CSV content
-    const headers = ["Organization ID", "Status", "Message"];
+    const headers = ["ID da Organização", "Status", "Mensagem"];
     const rows = results.map(
-      (result) => `${result.organizationId},${result.success ? "Success" : "Failed"},"${result.message}"`
+      (result) => `${result.organizationId},${result.success ? "Sucesso" : "Falha"},"${result.message}"`
     );
     const csvContent = [headers.join(","), ...rows].join("\n");
     
@@ -273,14 +273,14 @@ const Index = () => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `zendesk-updates-${new Date().toISOString().slice(0, 10)}.csv`;
+    link.download = `zendesk-atualizacoes-${new Date().toISOString().slice(0, 10)}.csv`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     
     toast({
-      title: "Export Complete",
-      description: "Results exported to CSV file",
+      title: "Exportação Concluída",
+      description: "Resultados exportados para arquivo CSV",
     });
   };
 
@@ -292,7 +292,7 @@ const Index = () => {
       <main className="w-full max-w-3xl px-4 sm:px-6 mt-8">
         <form onSubmit={handleSubmit} className="space-y-6">
           <section className="glass-panel p-6">
-            <h2 className="text-md font-medium mb-4">Data Input Method</h2>
+            <h2 className="text-md font-medium mb-4">Método de Entrada de Dados</h2>
             <DataEntrySelector mode={mode} setMode={setMode} />
             
             {mode === "csv" ? (
@@ -303,7 +303,7 @@ const Index = () => {
             ) : (
               <div className="mt-4 animate-fade-in">
                 <label htmlFor="organization-id" className="form-label">
-                  Organization ID
+                  ID da Organização
                 </label>
                 <input
                   id="organization-id"
@@ -311,14 +311,14 @@ const Index = () => {
                   value={organizationId}
                   onChange={(e) => setOrganizationId(e.target.value)}
                   className="w-full input-field"
-                  placeholder="Enter organization ID"
+                  placeholder="Digite o ID da organização"
                 />
               </div>
             )}
           </section>
           
           <section className="glass-panel p-6">
-            <h2 className="text-md font-medium mb-4">Fields to Update</h2>
+            <h2 className="text-md font-medium mb-4">Campos para Atualizar</h2>
             <div className="space-y-3">
               {fieldValues.map((fieldValue, index) => (
                 <FieldSelector
@@ -355,14 +355,14 @@ const Index = () => {
                     <path d="M12 5v14" />
                     <path d="M5 12h14" />
                   </svg>
-                  Add Another Field
+                  Adicionar Outro Campo
                 </span>
               </button>
             )}
           </section>
           
           <section className="glass-panel p-6">
-            <h2 className="text-md font-medium mb-4">API Configuration</h2>
+            <h2 className="text-md font-medium mb-4">Configuração da API</h2>
             
             <div className="space-y-4">
               <EnvironmentSelector
@@ -391,7 +391,7 @@ const Index = () => {
               }}
               className="btn-outline"
             >
-              Reset Form
+              Limpar Formulário
             </button>
             
             <button
@@ -421,10 +421,10 @@ const Index = () => {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
-                  Processing...
+                  Processando...
                 </span>
               ) : (
-                "Update Organizations"
+                "Atualizar Organizações"
               )}
             </button>
           </div>
@@ -461,23 +461,23 @@ const Index = () => {
               </svg>
             </div>
             <h3 className="text-lg font-semibold text-center mb-2">
-              Production Update Confirmation
+              Confirmação de Atualização em Produção
             </h3>
             <p className="text-center text-muted-foreground mb-6">
-              You are about to update {mode === "csv" ? parsedOrgIds.length : 1} organization(s) in the PRODUCTION environment. This action cannot be undone.
+              Você está prestes a atualizar {mode === "csv" ? parsedOrgIds.length : 1} organização(ões) no ambiente de PRODUÇÃO. Esta ação não pode ser desfeita.
             </p>
             <div className="flex justify-center space-x-3">
               <button
                 onClick={cancelProductionUpdate}
                 className="btn-outline"
               >
-                Cancel
+                Cancelar
               </button>
               <button
                 onClick={confirmProductionUpdate}
                 className="btn-primary bg-destructive hover:bg-destructive/90"
               >
-                Confirm Update
+                Confirmar Atualização
               </button>
             </div>
           </div>

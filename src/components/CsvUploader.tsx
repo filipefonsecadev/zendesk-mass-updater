@@ -84,16 +84,16 @@ const CsvUploader: React.FC<CsvUploaderProps> = ({ onFileSelect, selectedFile })
               <line x1="12" y1="3" x2="12" y2="15" />
             </svg>
           </div>
-          <p className="text-sm font-medium mb-1">Drag and drop your CSV file here</p>
+          <p className="text-sm font-medium mb-1">Arraste e solte seu arquivo CSV aqui</p>
           <p className="text-xs text-muted-foreground mb-4">
-            File should include 'organization_id' column (max 10MB)
+            O arquivo deve incluir a coluna 'organization_id' (máx 10MB)
           </p>
           <button
             type="button"
             onClick={handleButtonClick}
             className="btn-outline text-sm py-1.5"
           >
-            Browse files
+            Procurar arquivos
           </button>
         </div>
       ) : (
